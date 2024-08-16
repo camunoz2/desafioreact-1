@@ -9,8 +9,11 @@ import Stack from "react-bootstrap/Stack";
 import { numberToClpPrice } from "../utils/transformPrice";
 
 export default function Cart({ pizzaCart, navHeight, footerHeight }) {
-  const totalValue = 200;
   const [cart, setCart] = useState(pizzaCart);
+  const totalPrice = cart.reduce(
+    (total, item) => total + item.price * item.count,
+    0
+  );
 
   function add(id) {
     let updatedCart = cart.map((item) => {
@@ -81,7 +84,7 @@ export default function Cart({ pizzaCart, navHeight, footerHeight }) {
         ))}
       </Stack>
       <div className="display-6 d-flex justify-content-end">
-        Total: {numberToClpPrice(totalValue)}
+        Total: {numberToClpPrice(totalPrice)}
       </div>
     </Container>
   );
