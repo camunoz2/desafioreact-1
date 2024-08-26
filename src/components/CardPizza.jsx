@@ -22,7 +22,9 @@ export default function CardPizza({ name, price, ingredients, img, desc }) {
       <Card.Footer>
         <p>{numberToClpPrice(price)}</p>
         <Stack direction="horizontal" gap={2}>
-          <Button variant="primary">Ver mas 👁️</Button>
+          <Button onClick={() => console.log(name)} variant="primary">
+            Ver mas 👁️
+          </Button>
           <Button variant="outline-primary" className="ms-auto">
             Agregar 🛒
           </Button>

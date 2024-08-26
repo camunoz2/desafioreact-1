@@ -31,6 +31,7 @@ export default function Home({ pizzas }) {
           {pizzas.map((pizza) => (
             <CardPizza
               key={pizza.id}
+              id={pizza.id}
               name={pizza.name}
               desc={pizza.desc}
               img={pizza.img}
