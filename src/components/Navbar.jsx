@@ -12,7 +12,9 @@ export default function Navbar() {
   return (
     <BNavbar expand="lg" className="bg-body-tertiary">
       <Container className="justify-content-between">
-        <BNavbar.Brand href="#home">Pizzeria Mamma Mia</BNavbar.Brand>
+        <Link to="/home">
+          <BNavbar.Brand>Pizzeria Mamma Mia</BNavbar.Brand>
+        </Link>
         <BNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BNavbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
