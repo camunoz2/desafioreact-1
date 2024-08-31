@@ -5,7 +5,7 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { validateEmail } from "../utils/validateEmail";
-import SuccessModal from "./SuccessModal";
+import SuccessModal from "../components/SuccessModal";
 
 // eslint-disable-next-line react/prop-types
 export default function Login({ navHeight, footerHeight }) {

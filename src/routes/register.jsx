@@ -1,12 +1,13 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import { validateEmail } from "../utils/validateEmail";
+
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import { useEffect } from "react";
 import SuccessModal from "./SuccessModal";
-import { validateEmail } from "../utils/validateEmail";
 
 // eslint-disable-next-line react/prop-types
 export default function Register({ navHeight, footerHeight }) {

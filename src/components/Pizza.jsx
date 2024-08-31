@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import { numberToClpPrice } from "../utils/transformPrice";
 import { Container, ListGroup } from "react-bootstrap";
 import { useFetch } from "../hooks/useFetch";
-import { endpoint } from "../App";
+import { endpoint } from "../utils/constants";
 
 export default function Pizza({ pizzaId }) {
   const { data, error, isLoading } = useFetch(endpoint + "/" + pizzaId);

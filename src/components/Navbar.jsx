@@ -3,6 +3,7 @@ import BNavbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import { numberToClpPrice } from "../utils/transformPrice";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const total = 25000;
@@ -15,25 +16,27 @@ export default function Navbar() {
         <BNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BNavbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">
+            <Link to="/home">
               <Button variant="outline-primary">🍕 Home</Button>
-            </Nav.Link>
-            <Nav.Link href="#login">
+            </Link>
+            <Link to="/login">
               <Button variant="outline-primary">
                 {token ? "🔓" : "🔐"} Login
               </Button>
-            </Nav.Link>
-            <Nav.Link href="#register">
+            </Link>
+            <Nav to="/register">
               <Button variant="outline-primary">
                 {token ? "🔓" : "🔐"}
                 Register
               </Button>
-            </Nav.Link>
+            </Nav>
           </Nav>
         </BNavbar.Collapse>
-        <Button variant="outline-secondary">
-          🛒 Total {numberToClpPrice(total)}
-        </Button>
+        <Link to="/cart">
+          <Button variant="outline-secondary">
+            🛒 Total {numberToClpPrice(total)}
+          </Button>
+        </Link>
       </Container>
     </BNavbar>
   );
