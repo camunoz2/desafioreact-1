@@ -7,7 +7,7 @@ import { useFetch } from "../hooks/useFetch.jsx";
 import { endpoint } from "../utils/constants.js";
 import { Outlet } from "react-router-dom";
 
-export function Root() {
+export default function Root() {
   const { error, isLoading } = useFetch(endpoint);
 
   if (error) {

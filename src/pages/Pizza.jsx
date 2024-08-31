@@ -6,8 +6,10 @@ import { numberToClpPrice } from "../utils/transformPrice";
 import { Container, ListGroup } from "react-bootstrap";
 import { useFetch } from "../hooks/useFetch";
 import { endpoint } from "../utils/constants";
+import { useParams } from "react-router-dom";
 
-export default function Pizza({ pizzaId }) {
+export default function Pizza() {
+  const { pizzaId } = useParams();
   const { data, error, isLoading } = useFetch(endpoint + "/" + pizzaId);
 
   if (error) {

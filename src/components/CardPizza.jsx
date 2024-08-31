@@ -2,10 +2,11 @@
 import Stack from "react-bootstrap/Stack";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 import { numberToClpPrice } from "../utils/transformPrice";
 import { ListGroup } from "react-bootstrap";
 
-export default function CardPizza({ name, price, ingredients, img, desc }) {
+export default function CardPizza({ name, price, ingredients, img, desc, id }) {
   return (
     <Card>
       <Card.Img variant="top" src={img} />
@@ -22,9 +23,9 @@ export default function CardPizza({ name, price, ingredients, img, desc }) {
       <Card.Footer>
         <p>{numberToClpPrice(price)}</p>
         <Stack direction="horizontal" gap={2}>
-          <Button onClick={() => console.log(name)} variant="primary">
-            Ver mas 👁️
-          </Button>
+          <Link to={`/pizza/${id}`}>
+            <Button variant="primary">Ver mas 👁️</Button>
+          </Link>
           <Button variant="outline-primary" className="ms-auto">
             Agregar 🛒
           </Button>

@@ -7,8 +7,9 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { numberToClpPrice } from "../utils/transformPrice";
+import { pizzaCart } from "../data/pizzas";
 
-export default function Cart({ pizzaCart, navHeight, footerHeight }) {
+export default function Cart({ navHeight, footerHeight }) {
   const [cart, setCart] = useState(pizzaCart);
   const totalPrice = cart.reduce(
     (total, item) => total + item.price * item.count,
