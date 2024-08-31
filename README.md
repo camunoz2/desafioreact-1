@@ -1,3 +1,3 @@
-# Desafio Latam - React - Pizzeria
+# Hito 5 / React router DOM 1
 
-En este repo agregare mis componentes para la pizzeria para el desafio de react de desafio latam.
+Profesor, agregue las rutas de las pizzas en el home por si acaso. Cuando presiona en el boton de ver mas se crea una ruta dinamica
