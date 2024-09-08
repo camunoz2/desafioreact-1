@@ -23,6 +23,11 @@ export default function Navbar() {
             <Link to="/home">
               <Button variant="outline-primary">🍕 Home</Button>
             </Link>
+            <Link to="/profile">
+              <Button variant="outline-primary">
+                {token ? "🔓" : "🔐"} Perfil
+              </Button>
+            </Link>
             <Link to="/login">
               <Button variant="outline-primary">
                 {token ? "🔓" : "🔐"} Login

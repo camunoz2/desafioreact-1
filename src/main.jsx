@@ -11,6 +11,7 @@ import Pizza from "./pages/Pizza.jsx";
 
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { footerHeight, navHeight } from "./utils/constants.js";
+import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/profile",
+        element: <Profile navHeight={navHeight} footerHeight={footerHeight} />,
       },
       {
         path: "/login",
