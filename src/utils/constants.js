@@ -5,7 +5,7 @@ const BP_XL = 1200;
 const BP_XXL = 1400;
 const endpoint = "http://localhost:5000/api/pizzas";
 
-const navHeight = "70px";
+const navHeight = "54px";
 const footerHeight = "88px";
 
 export {

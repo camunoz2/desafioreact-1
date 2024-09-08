@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
@@ -7,35 +7,23 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { numberToClpPrice } from "../utils/transformPrice";
-import { pizzaCart } from "../data/pizzas";
+import { CartContext } from "../context/CartContext";
 
 export default function Cart({ navHeight, footerHeight }) {
-  const [cart, setCart] = useState(pizzaCart);
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.count,
-    0
-  );
+  const { cart, dispatch, totalPrice } = useContext(CartContext);
 
-  function add(id) {
-    let updatedCart = cart.map((item) => {
-      if (item.id === id) {
-        return { ...item, count: item.count + 1 };
-      }
-      return item;
+  function handleAddToCart(id) {
+    dispatch({
+      type: "added",
+      id: id,
     });
-    setCart(updatedCart);
   }
 
-  function remove(id) {
-    let updatedCart = cart.map((item) => {
-      if (item.id === id) {
-        return { ...item, count: item.count - 1 };
-      }
-      return item;
+  function handleRemoveFromCart(id) {
+    dispatch({
+      type: "removed",
+      id: id,
     });
-
-    updatedCart = updatedCart.filter((item) => item.count > 0);
-    setCart(updatedCart);
   }
 
   return (
@@ -64,14 +52,14 @@ export default function Cart({ navHeight, footerHeight }) {
             <Col>
               <Stack direction="horizontal">
                 <Button
-                  onClick={() => add(item.id)}
+                  onClick={() => handleAddToCart(item.id)}
                   className="bg-primary text-center flex-grow-1 text-white"
                 >
                   +
                 </Button>
                 <div className="text-center flex-grow-1">{item.count}</div>
                 <Button
-                  onClick={() => remove(item.id)}
+                  onClick={() => handleRemoveFromCart(item.id)}
                   className="bg-primary text-center flex-grow-1 text-white"
                 >
                   -

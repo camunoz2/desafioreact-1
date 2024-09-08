@@ -4,9 +4,11 @@ import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import { numberToClpPrice } from "../utils/transformPrice";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 export default function Navbar() {
-  const total = 25000;
+  const { totalPrice } = useContext(CartContext);
   const token = false;
 
   return (
@@ -36,7 +38,7 @@ export default function Navbar() {
         </BNavbar.Collapse>
         <Link to="/cart">
           <Button variant="outline-secondary">
-            🛒 Total {numberToClpPrice(total)}
+            🛒 Total {numberToClpPrice(totalPrice)}
           </Button>
         </Link>
       </Container>
