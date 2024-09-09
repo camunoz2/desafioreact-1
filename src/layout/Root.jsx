@@ -24,6 +24,7 @@ export default function Root() {
     return (
       <div>
         <p>Ha ocurrrido un error: {error.toString()}</p>
+        <p>Tienes el servidor local corriento en el puerto 5000? Ese puede ser el problema</p>
       </div>
     );
   }
