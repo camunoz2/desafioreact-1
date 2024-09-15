@@ -15,12 +15,11 @@ import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <Root />,
     errorElement: <NotFound />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Home />,
       },
       {
