@@ -6,9 +6,11 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { validateEmail } from "../utils/validateEmail";
 import SuccessModal from "../components/SuccessModal";
+import useAuth from "../hooks/useAuth";
 
 // eslint-disable-next-line react/prop-types
-export default function Login({ navHeight, footerHeight }) {
+export default function LoginRoute({ navHeight, footerHeight }) {
+  const { login } = useAuth();
   const [success, setSuccess] = useState(false);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -34,6 +36,7 @@ export default function Login({ navHeight, footerHeight }) {
     } else {
       setSuccess(true);
       setErrorMessage({ type: "", msg: "" });
+      login();
     }
   }
 

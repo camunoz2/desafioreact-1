@@ -8,23 +8,15 @@ import Button from "react-bootstrap/Button";
 import Stack from "react-bootstrap/Stack";
 import { numberToClpPrice } from "../utils/transformPrice";
 import { CartContext } from "../context/CartContext";
+import { handleAddToCart, handleRemoveFromCart } from "../actions/cart-actions";
+import useAuth from "../hooks/useAuth";
 
 export default function Cart({ navHeight, footerHeight }) {
   const { cart, dispatch, totalPrice } = useContext(CartContext);
+  const { token } = useAuth();
 
-  function handleAddToCart(id) {
-    dispatch({
-      type: "added",
-      id: id,
-    });
-  }
-
-  function handleRemoveFromCart(id) {
-    dispatch({
-      type: "removed",
-      id: id,
-    });
-  }
+  const addToCart = handleAddToCart(dispatch);
+  const removeFromCart = handleRemoveFromCart(dispatch);
 
   return (
     <Container
@@ -52,14 +44,14 @@ export default function Cart({ navHeight, footerHeight }) {
             <Col>
               <Stack direction="horizontal">
                 <Button
-                  onClick={() => handleAddToCart(item.id)}
+                  onClick={() => addToCart(item)}
                   className="bg-primary text-center flex-grow-1 text-white"
                 >
                   +
                 </Button>
                 <div className="text-center flex-grow-1">{item.count}</div>
                 <Button
-                  onClick={() => handleRemoveFromCart(item.id)}
+                  onClick={() => removeFromCart(item)}
                   className="bg-primary text-center flex-grow-1 text-white"
                 >
                   -
@@ -75,6 +67,18 @@ export default function Cart({ navHeight, footerHeight }) {
       <div className="display-6 d-flex justify-content-end">
         Total: {numberToClpPrice(totalPrice)}
       </div>
+      {token ? (
+        <Button className="bg-primary text-center flex-grow-1 text-white">
+          Pagar
+        </Button>
+      ) : (
+        <Button
+          disabled
+          className="bg-primary text-center flex-grow-1 text-white"
+        >
+          Debes estar logeado para pagar
+        </Button>
+      )}
     </Container>
   );
 }

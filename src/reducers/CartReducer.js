@@ -1,24 +1,31 @@
-export default function cartReducer(cart, action) {
+export default function cartReducer(state, action) {
   switch (action.type) {
     case "added": {
-      return cart.map((item) => {
-        if (item.id === action.id) {
-          return { ...item, count: item.count + 1 };
-        }
-        return item;
-      });
-    }
-    case "removed": {
-      let updatedCart = cart.map((item) => {
-        if (item.id === action.id) {
-          return { ...item, count: item.count - 1 };
-        }
-        return item;
-      });
+      const existingItem = state.find((item) => item.id === action.id);
 
-      return updatedCart.filter((item) => item.count > 0);
+      if (existingItem) {
+        return state.map((item) =>
+          item.id === action.id ? { ...item, count: item.count + 1 } : item
+        );
+      } else {
+        const newItem = action.item;
+        return [...state, { ...newItem, count: 1 }];
+      }
     }
+
+    case "removed": {
+      const existingItem = state.find((item) => item.id === action.id);
+
+      if (existingItem && existingItem.count > 1) {
+        return state.map((item) =>
+          item.id === action.id ? { ...item, count: item.count - 1 } : item
+        );
+      } else {
+        return state.filter((item) => item.id !== action.id);
+      }
+    }
+
     default:
-      return cart;
+      return state;
   }
 }

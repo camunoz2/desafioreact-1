@@ -6,10 +6,11 @@ import { numberToClpPrice } from "../utils/transformPrice";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import useAuth from "../hooks/useAuth";
 
 export default function Navbar() {
   const { totalPrice } = useContext(CartContext);
-  const token = false;
+  const { logout, token } = useAuth();
 
   return (
     <BNavbar expand="lg" className="bg-body-tertiary">
@@ -23,29 +24,37 @@ export default function Navbar() {
             <Link to="/">
               <Button variant="outline-primary">🍕 Home</Button>
             </Link>
-            <Link to="/profile">
-              <Button variant="outline-primary">
-                {token ? "🔓" : "🔐"} Perfil
-              </Button>
-            </Link>
-            <Link to="/login">
-              <Button variant="outline-primary">
-                {token ? "🔓" : "🔐"} Login
-              </Button>
-            </Link>
-            <Nav to="/register">
-              <Button variant="outline-primary">
-                {token ? "🔓" : "🔐"}
-                Register
-              </Button>
-            </Nav>
+            {token ? (
+              <>
+                <Button variant="outline-primary" onClick={logout}>
+                  {token ? "🔓" : "🔐"} Logout
+                </Button>
+                <Link to="/profile">
+                  <Button variant="outline-primary">
+                    {token ? "🔓" : "🔐"} Perfil
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="outline-primary">Login</Button>
+                </Link>
+                <Nav to="/register">
+                  <Button variant="outline-primary">
+                    {token ? "🔓" : "🔐"}
+                    Register
+                  </Button>
+                </Nav>
+              </>
+            )}
           </Nav>
+          <Link to="/cart">
+            <Button variant="outline-secondary">
+              🛒 Total {numberToClpPrice(totalPrice)}
+            </Button>
+          </Link>
         </BNavbar.Collapse>
-        <Link to="/cart">
-          <Button variant="outline-secondary">
-            🛒 Total {numberToClpPrice(totalPrice)}
-          </Button>
-        </Link>
       </Container>
     </BNavbar>
   );

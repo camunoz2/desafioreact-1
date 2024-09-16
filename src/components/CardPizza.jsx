@@ -5,28 +5,38 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { numberToClpPrice } from "../utils/transformPrice";
 import { ListGroup } from "react-bootstrap";
+import { handleAddToCart } from "../actions/cart-actions";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
-export default function CardPizza({ name, price, ingredients, img, desc, id }) {
+export default function CardPizza({ item }) {
+  const { dispatch } = useContext(CartContext);
+  const addToCart = handleAddToCart(dispatch);
+
   return (
     <Card>
-      <Card.Img variant="top" src={img} />
+      <Card.Img variant="top" src={item.img} />
       <Card.Body>
-        <Card.Title>{name.toUpperCase()}</Card.Title>
+        <Card.Title>{item.name.toUpperCase()}</Card.Title>
         <Card.Text>Ingredientes</Card.Text>
-        <Card.Text>{desc}</Card.Text>
+        <Card.Text>{item.desc}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
-        {ingredients.map((ingredient, idx) => (
+        {item.ingredients.map((ingredient, idx) => (
           <ListGroup.Item key={idx}>{ingredient}</ListGroup.Item> // Profesor, estos reemplazan a los li x si acaso
         ))}
       </ListGroup>
       <Card.Footer>
-        <p>{numberToClpPrice(price)}</p>
+        <p>{numberToClpPrice(item.price)}</p>
         <Stack direction="horizontal" gap={2}>
-          <Link to={`/pizza/${id}`}>
+          <Link to={`/pizza/${item.id}`}>
             <Button variant="primary">Ver mas 👁️</Button>
           </Link>
-          <Button variant="outline-primary" className="ms-auto">
+          <Button
+            onClick={() => addToCart(item)}
+            variant="outline-primary"
+            className="ms-auto"
+          >
             Agregar 🛒
           </Button>
         </Stack>
