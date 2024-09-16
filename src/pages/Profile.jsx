@@ -2,8 +2,21 @@
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import useAuth from "../hooks/useAuth";
 
 export default function Profile({ navHeight, footerHeight }) {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+
+  useEffect(() => {
+    if (token) {
+      console.log("user not logged in");
+      navigate("/login");
+    }
+  }, [token]);
+
   return (
     <Container
       style={{
