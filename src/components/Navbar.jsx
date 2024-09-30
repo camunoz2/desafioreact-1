@@ -40,12 +40,12 @@ export default function Navbar() {
                 <Link to="/login">
                   <Button variant="outline-primary">Login</Button>
                 </Link>
-                <Nav to="/register">
+                <Link to="/register">
                   <Button variant="outline-primary">
                     {token ? "🔓" : "🔐"}
                     Register
                   </Button>
-                </Nav>
+                </Link>
               </>
             )}
           </Nav>

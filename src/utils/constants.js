@@ -4,6 +4,7 @@ const BP_LG = 992;
 const BP_XL = 1200;
 const BP_XXL = 1400;
 const endpoint = "http://localhost:5000/api/pizzas";
+const authEndpoint = "http://localhost:5000/api/auth";
 
 const navHeight = "54px";
 const footerHeight = "88px";
@@ -17,4 +18,5 @@ export {
   BP_XL,
   BP_XXL,
   endpoint,
+  authEndpoint,
 };

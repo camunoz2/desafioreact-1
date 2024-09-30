@@ -5,13 +5,10 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { numberToClpPrice } from "../utils/transformPrice";
 import { ListGroup } from "react-bootstrap";
-import { handleAddToCart } from "../actions/cart-actions";
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import useCart from "../hooks/useCart";
 
 export default function CardPizza({ item }) {
-  const { dispatch } = useContext(CartContext);
-  const addToCart = handleAddToCart(dispatch);
+  const { addToCart } = useCart();
 
   return (
     <Card>

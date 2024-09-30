@@ -12,6 +12,7 @@ import Pizza from "./pages/Pizza.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { footerHeight, navHeight } from "./utils/constants.js";
 import Profile from "./pages/Profile.jsx";
+import Register from "./pages/Register.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,9 +35,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/register",
-        element: (
-          <LoginRoute navHeight={navHeight} footerHeight={footerHeight} />
-        ),
+        element: <Register navHeight={navHeight} footerHeight={footerHeight} />,
       },
       {
         path: "/cart",

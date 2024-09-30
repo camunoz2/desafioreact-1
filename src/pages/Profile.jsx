@@ -8,14 +8,16 @@ import useAuth from "../hooks/useAuth";
 
 export default function Profile({ navHeight, footerHeight }) {
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { isAuthenticated, email, id, profile, token, logout } = useAuth();
 
   useEffect(() => {
-    if (token) {
-      console.log("user not logged in");
+    if (!isAuthenticated) {
+      console.log("Usuario no autenticado");
       navigate("/login");
+    } else {
+      profile(token);
     }
-  }, [token]);
+  }, [isAuthenticated]);
 
   return (
     <Container
@@ -26,9 +28,10 @@ export default function Profile({ navHeight, footerHeight }) {
     >
       <Card>
         <Card.Body>
-          <h1>Hola test@email.com</h1>
+          <h1>{email}</h1>
+          <p>Tu id es: {id}</p>
           <hr />
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={logout}>
             Cerrar Sesion
           </Button>
         </Card.Body>
